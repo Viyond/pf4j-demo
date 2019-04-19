@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>pf4j-demo-plugins</artifactId>
+        <groupId>cn.jeremy.study</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>pf4f-demo-plugins-read</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>../../plugins</outputDirectory>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Plugin-Class>cn.jeremy.study.pf4j.demo.readplugin.ReadDevicePlugin</Plugin-Class>
+                            <Plugin-Id>read-plugin</Plugin-Id>
+                            <Plugin-Version>0.0.1</Plugin-Version>
+                            <Plugin-Requires>1.0.0</Plugin-Requires>
+                            <Plugin-Description>test read plugin</Plugin-Description>
+                            <Plugin-Provider>kugoufeng</Plugin-Provider>
+                            <Plugin-License>Apache License 2.0</Plugin-License>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

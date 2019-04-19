@@ -5,5 +5,7 @@ import org.pf4j.ExtensionPoint;
 
 public interface AppDevice extends ExtensionPoint
 {
+    String getId();
+
     String getResponse(AppRequest request);
 }

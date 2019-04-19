@@ -7,6 +7,16 @@ public class AppRequest
 
     private String text;
 
+    public AppRequest()
+    {
+    }
+
+    public AppRequest(String appId, String text)
+    {
+        this.appId = appId;
+        this.text = text;
+    }
+
     public String getAppId()
     {
         return appId;
