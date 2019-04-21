@@ -2,38 +2,26 @@ package cn.jeremy.study.pf4j.demo.app.controller;
 
 import cn.jeremy.study.pf4j.demo.api.AppDevice;
 import cn.jeremy.study.pf4j.demo.api.domain.AppRequest;
-import org.pf4j.DefaultPluginManager;
+import java.io.File;
+import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.pf4j.PluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import java.io.File;
-import java.util.List;
-
 @RestController
-public class HelloWorldController
+public class PluginController
 {
-    private static Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+    private static Logger logger = LoggerFactory.getLogger(PluginController.class);
 
-    final String pluginRoot = "J:\\git\\study\\pf4j-demo\\plugins";
-
+    @Autowired
     PluginManager pluginManager;
 
-    @PostConstruct
-    public void init()
-    {
-        pluginManager = new DefaultPluginManager(new File(pluginRoot).toPath());
-        pluginManager.loadPlugins();
-        pluginManager.startPlugins();
-        List<AppDevice> extensions = pluginManager.getExtensions(AppDevice.class);
-        System.out.println(extensions.size());
-    }
-
-    @RequestMapping("/hello")
-    public String index(String appId,String text)
+    @RequestMapping("/find")
+    public String index(String appId, String text)
     {
         List<AppDevice> extensions = pluginManager.getExtensions(AppDevice.class);
 
@@ -47,5 +35,20 @@ public class HelloWorldController
             }
         }
         return "设备不存在：" + appId;
+    }
+
+    @RequestMapping("/load")
+    public String load()
+    {
+        pluginManager.loadPlugins();
+        pluginManager.startPlugins();
+        return "ok";
+    }
+
+    @RequestMapping("/unload")
+    public String unload(String pluginId)
+    {
+        pluginManager.unloadPlugin(pluginId);
+        return "ok";
     }
 }

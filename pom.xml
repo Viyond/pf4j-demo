@@ -23,7 +23,16 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<pf4j.version>2.6.0</pf4j.version>
+		<commons.lang.version>2.6</commons.lang.version>
 	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>${commons.lang.version}</version>
+		</dependency>
+	</dependencies>
 
 
 

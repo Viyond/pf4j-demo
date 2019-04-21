@@ -27,7 +27,6 @@
                             <Plugin-Class>cn.jeremy.study.pf4j.demo.readplugin.ReadDevicePlugin</Plugin-Class>
                             <Plugin-Id>read-plugin</Plugin-Id>
                             <Plugin-Version>0.0.1</Plugin-Version>
-                            <Plugin-Requires>1.0.0</Plugin-Requires>
                             <Plugin-Description>test read plugin</Plugin-Description>
                             <Plugin-Provider>kugoufeng</Plugin-Provider>
                             <Plugin-License>Apache License 2.0</Plugin-License>

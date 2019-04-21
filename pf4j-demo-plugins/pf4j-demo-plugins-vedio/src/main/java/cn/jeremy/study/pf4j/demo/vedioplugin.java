@@ -1,4 +1,4 @@
-package cn.jeremy.study.pf4j.demo.readplugin;
+package cn.jeremy.study.pf4j.demo;
 
 import cn.jeremy.study.pf4j.demo.api.AppDevice;
 import cn.jeremy.study.pf4j.demo.api.domain.AppRequest;
@@ -6,28 +6,28 @@ import org.pf4j.Extension;
 import org.pf4j.Plugin;
 import org.pf4j.PluginWrapper;
 
-public class ReadDevicePlugin extends Plugin
+public class vedioplugin extends Plugin
 {
-    public ReadDevicePlugin(PluginWrapper wrapper)
+    public vedioplugin(PluginWrapper wrapper)
     {
         super(wrapper);
     }
 
-
     @Extension
-    public static class ReadAppDevice implements AppDevice{
+    public static class VedioAppDevice implements AppDevice
+    {
 
         @Override
         public String getId()
         {
-            return "read";
+            return "vedio";
         }
 
         @Override
         public String getResponse(AppRequest request)
         {
 
-            return "阅读app";
+            return "视频app";
         }
     }
 }
