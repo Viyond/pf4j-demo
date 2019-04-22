@@ -1,5 +1,5 @@
 # pf4j使用介绍
-##定义一个扩展点
+## 定义一个扩展点
 
     public interface AppDevice extends ExtensionPoint
     {
@@ -7,7 +7,7 @@
     
         String getResponse(AppRequest request);
     }
-##定义一个插件
+## 定义一个插件
 
     public class ReadDevicePlugin extends Plugin
     {
@@ -32,14 +32,14 @@
             }
         }
     }
-##插件元数据
+## 插件元数据
 
-###插件管理器使用PluginDescriptorFinder搜索插件元数据
+### 插件管理器使用PluginDescriptorFinder搜索插件元数据
     
     protected PluginDescriptorFinder createPluginDescriptorFinder() {
         return (new CompoundPluginDescriptorFinder()).add(new PropertiesPluginDescriptorFinder()).add(new ManifestPluginDescriptorFinder());
     }
-###插件元数据可以通过plugin.properties
+### 插件元数据可以通过plugin.properties
 
     plugin.class=org.pf4j.demo.welcome.WelcomePlugin
     plugin.id=welcome-plugin
@@ -50,7 +50,7 @@
     plugin.provider=Decebal Suiu
     plugin.license=Apache License 2.0
 
-###或者META-INF/MANIFEST.MF提供
+### 或者META-INF/MANIFEST.MF提供
 
     Plugin-Class: org.pf4j.demo.welcome.WelcomePlugin
     Plugin-Id: welcome-plugin
@@ -60,8 +60,8 @@
     Plugin-Description: My example plugin
     Plugin-Provider: Decebal Suiu
     Plugin-License: Apache License 2.0
-##关于插件依赖性的注释
-###插件可能彼此依赖。如上所述，这些依赖性在插件元数据中指定。要将某个插件作为依赖项引用，您需要提供其指定的插件ID。
+## 关于插件依赖性的注释
+### 插件可能彼此依赖。如上所述，这些依赖性在插件元数据中指定。要将某个插件作为依赖项引用，您需要提供其指定的插件ID。
 - 如果pluginA依赖于另一个pluginB，你可以在pluginA的元数据中设置：
     `Plugin-Dependencies: pluginB` 
 - 如果pluginA依赖于版本1.0.0中的另一个pluginB，则可以在pluginA的元数据中设置：
@@ -76,7 +76,7 @@
     `Plugin-Dependencies: pluginB@>=1.0.0 & <=2.0.0, pluginC@>=0.0.1 & <=0.1.0`
 这些依赖性被认为是必需的。如果所有依赖项都已完成，插件管理器将仅在运行时创建一个插件。
 
-###可选的插件依赖项
+### 可选的插件依赖项
 或者，您也可以通过在插件ID后面添加问号来定义插件之间的可选依赖项 - 例如：
 
     `Plugin-Dependencies: pluginB?`
