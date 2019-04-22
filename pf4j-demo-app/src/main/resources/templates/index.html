@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>pf4j插件测试</title>
+</head>
+<body>
+<div>
+    <div>
+        <form action="/find">
+            <fieldset>
+                设备Id：<input type="text" name="appId" th:value="${appId}"/>
+                请求内容：<input type="text" name="text" th:value="${text}"/>
+                <input type="submit" value="查找插件"/>
+            </fieldset>
+        </form>
+        插件响应内容：<input th:value="${pluginResponse}"/>
+    </div>
+    <div>
+        <form action="/load">
+            <fieldset>
+                插件名称：<input type="text" name="fileName" th:attr="value=${fileName}"/>
+                <input type="submit" value="加载插件"/>
+            </fieldset>
+        </form>
+        插件id：<input th:value="${loadPluginId}"/>
+    </div>
+    <div>
+        <form action="/unload">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${unloadPluginId}"/>
+                <input type="submit" value="卸载插件"/>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action="/enable">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${enablePluginId}"/>
+                <input type="submit" value="启用插件"/>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action="/disable">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${disablePluginId}"/>
+                <input type="submit" value="禁用插件"/>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action="/start">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${startPluginId}"/>
+                <input type="submit" value="启动插件"/>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action="/stop">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${stopPluginId}"/>
+                <input type="submit" value="停止插件"/>
+            </fieldset>
+        </form>
+    </div>
+    <div>
+        <form action="/delete">
+            <fieldset>
+                插件id：<input type="text" name="pluginId" th:attr="value=${deletePluginId}"/>
+                <input type="submit" value="删除插件"/>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<h2>插件列表</h2>
+<div>
+    <ul>
+        <li th:each="plugin:${plugins}">
+            <span th:text="${plugin.descriptor.getPluginId()}"></span>---------
+            <span th:text="${plugin.pluginState.toString()}"></span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
