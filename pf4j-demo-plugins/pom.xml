@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>pf4f-demo-plugins-read</module>
-      <module>pf4j-demo-plugins-vedio</module>
+        <module>pf4j-demo-plugins-vedio</module>
     </modules>
 
     <dependencies>
@@ -31,7 +31,6 @@
             <groupId>cn.jeremy.study</groupId>
         </dependency>
     </dependencies>
-
 
 
 </project>
