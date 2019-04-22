@@ -85,10 +85,10 @@
 ### 可选的插件依赖项
 或者，您也可以通过在插件ID后面添加问号来定义插件之间的可选依赖项 - 例如：
 
-    `Plugin-Dependencies: pluginB?`
+`Plugin-Dependencies: pluginB?`
 要么
 
 `Plugin-Dependencies: pluginB?@1.0`
 
-在这种情况下，即使在运行时未完成依赖项，仍会加载pluginA。本手册的扩展部分介绍了此功能的典型用例。
+在这种情况下，即使在运行时未完成依赖项，仍会加载pluginA。
  
