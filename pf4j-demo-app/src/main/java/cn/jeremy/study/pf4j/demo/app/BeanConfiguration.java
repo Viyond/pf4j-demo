@@ -18,7 +18,7 @@ public class BeanConfiguration
     @Bean(name = "pluginManager")
     public PluginManager pluginManager()
     {
-        PluginManager pluginManager = new DefaultPluginManager(new File("J:\\git\\study\\pf4j-demo\\plugins").toPath())
+        PluginManager pluginManager = new DefaultPluginManager(new File("C:\\git\\study\\pf4j-demo\\plugins").toPath())
         {
             @Override
             protected PluginLoader createPluginLoader()

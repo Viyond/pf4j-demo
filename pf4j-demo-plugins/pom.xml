@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>pf4f-demo-plugins-read</module>
-      <module>pf4j-demo-plugins-vedion</module>
+      <module>pf4j-demo-plugins-vedio</module>
     </modules>
 
     <dependencies>

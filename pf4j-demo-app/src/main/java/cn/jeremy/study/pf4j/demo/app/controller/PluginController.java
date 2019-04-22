@@ -21,12 +21,11 @@ public class PluginController
     PluginManager pluginManager;
 
     @RequestMapping("/find")
-    public String index(String appId, String text)
+    public String find(String appId, String text)
     {
         List<AppDevice> extensions = pluginManager.getExtensions(AppDevice.class);
 
         AppRequest request = new AppRequest(appId, text);
-
         for (AppDevice extension : extensions)
         {
             if (extension.getId().equals(appId))
