@@ -1,4 +1,4 @@
-# pf4j使用介绍
+# pf4j入门使用介绍
 ## 定义一个扩展点
 
     public interface AppDevice extends ExtensionPoint
@@ -60,7 +60,7 @@
     Plugin-Description: My example plugin
     Plugin-Provider: Decebal Suiu
     Plugin-License: Apache License 2.0
-## 关于插件依赖性的注释
+## 关于插件依赖性的介绍
 ### 插件可能彼此依赖。如上所述，这些依赖性在插件元数据中指定。要将某个插件作为依赖项引用，您需要提供其指定的插件ID。
 - 如果pluginA依赖于另一个pluginB，你可以在pluginA的元数据中设置：
 
@@ -86,9 +86,75 @@
 或者，您也可以通过在插件ID后面添加问号来定义插件之间的可选依赖项 - 例如：
 
 `Plugin-Dependencies: pluginB?`
+
 要么
 
 `Plugin-Dependencies: pluginB?@1.0`
 
 在这种情况下，即使在运行时未完成依赖项，仍会加载pluginA。
- 
+## 插件的管理
+插件通过PluginManager进行管理，默认的实现是DefaultPluginManager，我们可以通过复写DefaultPluginManager的方法，定义自己的PluginManager
+    
+    PluginManager pluginManager = new DefaultPluginManager(new File("C:\\git\\study\\pf4j-demo\\plugins").toPath())
+        {
+            @Override
+            protected PluginLoader createPluginLoader()
+            {
+                return new JarPluginLoader(this)
+                {
+                    @Override
+                    public ClassLoader loadPlugin(Path pluginPath, PluginDescriptor pluginDescriptor)
+                    {
+                        PluginClassLoader
+                            pluginClassLoader = new PluginClassLoader(this.pluginManager,
+                            pluginDescriptor,
+                            this.getClass().getClassLoader(),
+                            true);
+                        pluginClassLoader.addFile(pluginPath.toFile());
+                        return pluginClassLoader;
+                    }
+                };
+            }
+        };
+## 插件的生命周期
+ 作为PF4J消费者，您的应用程序可以完全控制每个插件（状态）。因此，您可以使用PluginManager（以编程方式）加载（load），卸载（unload），启用（enable），禁用（disable），启动（start），停止（stop）和删除（delete）某个插件。
+ - 加载（load）
+    ```
+    public String load(String fileName) {
+       
+               if (StringUtils.isEmpty(fileName)) {
+                   return "fileName 不能为空";
+               }
+               String filePath = pluginManager.getPluginsRoot().toString().concat("/").concat(fileName);
+               return pluginManager.loadPlugin(new File(filePath).toPath());
+           }
+ - 卸载（unload）
+    ```
+    public String unload(String pluginId) {
+            return String.valueOf(pluginManager.unloadPlugin(pluginId));
+        }
+ - 启用（enable）
+    ```
+    public String enable(String pluginId) {
+            return String.valueOf(pluginManager.enablePlugin(pluginId));
+        }
+ - 禁用（disable）
+    ```
+    public String disable(String pluginId) {
+            return String.valueOf(pluginManager.disablePlugin(pluginId));
+        }
+ - 启动（start）
+    ```
+    public String start(String pluginId) {
+            return String.valueOf(pluginManager.startPlugin(pluginId));
+        }
+ - 停止（stop）
+    ```
+    public String stop(String pluginId) {
+            return String.valueOf(pluginManager.stopPlugin(pluginId));
+        }
+ - 删除（delete）
+    ```
+    public String delete(String pluginId) {
+            return String.valueOf(pluginManager.deletePlugin(pluginId));
+        }
